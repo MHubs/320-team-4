@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.header{
+	font-size: 28px;
+	text-align: center;
+	background-color: #519e2f;
+	color: white;
+}
+/*General stylings of JobPosting form*/
+.form-group{
+	font-size: 16px;
+	padding: 10px;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	width: 300px;
+	margin: auto;
+	background-color: #D3D3D3;
+}
+
+/*Sylings for submit button*/
+.btn{
+	padding-left: 10px;
+	text-align: center;
+	width: 100%;
+	margin: auto;
+	background-color: #519e2f;
+	color: white;
+}
+
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+	background-color: rgba(0,0,0, 0.5);
+  z-index:9999;
+
+}
+.popup_inner {
+	position: absolute;
+	font-size: 8px;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  bottom: 10%;
+  margin: auto;
+	background: #E3E3E3;
+	border-radius: 15px;
+}
+
+h1 {
+	font-family: "Palatino";
+	font-size: 30px;
+	text-align: center;
+
+}
+
+h2{
+	font-family: "Palatino";
+	font-size: 24px;
+	padding-left: 2%;
+}
+
+h3 {
+	font-family: "Palatino";
+	font-size:18px;
+	padding-left: 3%;
+
+}
+
+h4{
+	font-family: "Palatino";
+	font-size: 8px;
+	padding-left: 1%;
+
+}
+
+#closeButton {
+	justify-content: center;
+}

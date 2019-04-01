@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+  react-docker:
+    build: .
+    container_name: ultimate-hiring-app
+    restart: always
+    #    volumes:
+    #      - ./client:/usr/src/app
+    ports:
+      - "3000:3000"
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+  backend:
+    build: .
+    container_name: backend
+    restart: always
+    #    volumes:
+    #      - ./backend:/usr/src/app
+    ports:
+      - "3031:3000"
+    working_dir: /usr/src/app/src/backend
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - mongo
+  mongo:
+    image: "mongo"
+    container_name: mongo
+    ports:
+      - "27017:27017"
