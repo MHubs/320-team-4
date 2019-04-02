@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/320/UltimateHiringApp
+hooks:
+  AfterInstall:
+    - location: scripts/installer.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+    - location: scripts/start_web.sh
+      timeout: 300
+      runas: root
