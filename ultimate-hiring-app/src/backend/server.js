@@ -10,7 +10,7 @@ const JobPosting = require('../models/JobPostingJSON');
 const app = express()
 const router = express.Router()
 
-const dbRoute = "mongodb://18.191.126.46:27017/scrumgang_server";
+const dbRoute = "mongodb://3.18.251.248:27017/scrumgang_server";
 const API_PORT = 3001;
 
 app.use(cors()) //makes app work with cors
