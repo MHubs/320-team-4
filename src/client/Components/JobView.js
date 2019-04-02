@@ -4,7 +4,7 @@ class JobView extends Component {
   render() {
 
       //Use getIP method rather than localhost
-  	axios.get('http://13.59.24.130:3001/getData').then(function (response) {
+  	axios.get('http://localhost:3001/getData').then(function (response) {
 	//handle success
 	// Shows form data: console.log(response.data)
         console.log(response.data);
