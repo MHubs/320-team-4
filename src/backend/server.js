@@ -49,4 +49,4 @@ app.get("/getData",function(req, res) {
   })});
 
 
-app.listen(API_PORT, function(){ console.log(`LISTENING ON PORT ${API_PORT}`)});
+app.listen(API_PORT, function(){ console.log("LISTENING ON PORT " + API_PORT)});
