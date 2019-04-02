@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5e96e9-14d2-48f6-a7b1-a2a10e054333" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/scripts/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start_server.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start_web.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start_web.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Components/JobView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Components/JobView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/backend/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1104">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="308">
+              <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -102,7 +100,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/start_web.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="46">
@@ -122,10 +120,10 @@
         <option value="$PROJECT_DIR$/appspec.yml" />
         <option value="$PROJECT_DIR$/scripts/installer.sh" />
         <option value="$PROJECT_DIR$/src/client/Components/JobPostingPopup.js" />
-        <option value="$PROJECT_DIR$/src/backend/server.js" />
         <option value="$PROJECT_DIR$/src/client/Components/JobView.js" />
         <option value="$PROJECT_DIR$/scripts/start_server.sh" />
         <option value="$PROJECT_DIR$/scripts/start_web.sh" />
+        <option value="$PROJECT_DIR$/src/backend/server.js" />
       </list>
     </option>
   </component>
@@ -214,18 +212,18 @@
       <workItem from="1554176283125" duration="200000" />
       <workItem from="1554176495948" duration="1108000" />
       <workItem from="1554220578014" duration="1463000" />
-      <workItem from="1554224077525" duration="1790000" />
+      <workItem from="1554224077525" duration="2031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4561000" />
+    <option name="totallyTimeSpent" value="4802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="792" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -239,7 +237,7 @@
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32894737" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -326,16 +324,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -366,6 +354,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

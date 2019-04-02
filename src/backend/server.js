@@ -23,12 +23,11 @@ mongoose.connect(
 );
 
 const db = mongoose.connection;
-
-db.once("open", () => console.log("connected"));
+db.once("open", function(){ console.log("connected")});
 
 // this is our create methid
 // this method adds new data in our database
-app.post("/putData", (req, res) => {
+app.post("/putData", function(req, res) {
   job = new JobPosting(); //based on Mongoose schema
   //TODO: Fill in the rest of the fields here before saving object
   job.title = req.body.jobTitle;
@@ -39,12 +38,12 @@ app.post("/putData", (req, res) => {
   });
 });
 
-app.get("/getData",(req, res) => {
+app.get("/getData",function(req, res) {
   console.log("getting data");
-  JobPosting.find((err, data) => {
+  JobPosting.find(function(err, data) {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   })});
 
 
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(API_PORT, function(){ console.log(`LISTENING ON PORT ${API_PORT}`)});
