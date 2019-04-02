@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd ..
+cd /var/320/UltimateHiringApp
 sudo npm start

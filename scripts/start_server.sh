@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-cd ..
-cd src/backend
+cd /var/320/UltimateHiringApp/src/backend
 sudo node server.js

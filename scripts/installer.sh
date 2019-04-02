@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd ..
-npm install
+cd /var/320/UltimateHiringApp
+sudo npm install
