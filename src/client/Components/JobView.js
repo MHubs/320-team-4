@@ -14,7 +14,7 @@ class JobView extends Component {
 	}
 
 	getJobs = async () => {
-		let res = await axios.get('http://localhost:3001/getData');
+		let res = await axios.get('http://13.59.146.4:3001/getData');
 		let {data} = await res.data;
 		console.log(data);
 		this.setState({jobs: data})
