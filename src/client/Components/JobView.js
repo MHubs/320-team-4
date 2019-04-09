@@ -1,25 +1,40 @@
 import React, {Component} from 'react';
 import axios from 'axios'
+import { Container, Row, Col, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import JobPostingCard from "./JobPostingCard";
+import CurrentJobPostingCards from "./CurrentJobPostingCards";
 class JobView extends Component {
-  render() {
 
-      //Use getIP method rather than localhost
-  	axios.get('http://localhost:3001/getData').then(function (response) {
-	//handle success
-	// Shows form data: console.log(response.data)
-        console.log(response.data);
-	})
-	.catch(function(error){
-		//alert("Error retrieving job posting data")
-	})
-	.then(function(){
-		//always executed, display here
-	})
-    return (
-      <div>
-        <h1> Welcome Stranger!</h1>
-      </div>
-    )
-  }
+	state = {
+		jobs: null
+	};
+
+	componentDidMount(){
+		this.getJobs();
+	}
+
+	getJobs = async () => {
+		let res = await axios.get('http://localhost:3001/getData');
+		let {data} = await res.data;
+		console.log(data);
+		this.setState({jobs: data})
+	};
+
+	render() {
+		if (this.state.jobs) {
+
+			return (
+				<Container fluid>
+					<React.Fragment>
+						<CurrentJobPostingCards jobs={this.state.jobs}/>
+					</React.Fragment>
+				</Container>
+			)
+		}
+
+		return <div>Loading...</div>;
+	}
+
 }
+
 export default JobView;

@@ -3,12 +3,19 @@ import axios from 'axios'
 
 
 
-class JobPostingPopup extends Component{
+class PostJobPopup extends Component{
   constructor(props){
       super(props);
       this.state = {
-          fname: '',
-          lname: '',
+          postingID: Math.floor(Math.random()*100),
+          managerID: 22,
+          jobTitle: '',
+          jobDescription: '',
+          companyID: 1,
+          postingDate:  new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+          showPopup: false,
+          startDate: null,
+          expirationDate: null,
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.togglePopup = this.togglePopup.bind(this);
@@ -32,8 +39,10 @@ class JobPostingPopup extends Component{
         //NOTE: data dump doesn't include posting ID. I'm wondering if we need it or if we'll always query by manager id and position title
         //for example, an employee wouldn't apply for a posting. They'd apply to a title. Then positions would be filled as they're filled
         this.setState({
-          fname: form.fname.value,
-          lname: form.lname.value,
+          jobTitle: form.jobTitle.value,
+          jobDescription: form.jobDescription.value,
+          startDate: form.startDate.value,
+          expirationDate: form.expirationDate.value,
       },() => { //callback param ensures that setstate occurs before post
         //push data via backend
         console.log('POST')
@@ -54,12 +63,17 @@ class JobPostingPopup extends Component{
       <div className='popup'>
         <div className='popup_inner'>
         <form name="postingInfo" onSubmit={this.handleSubmit} id="posting-form">
-          <div className="header">Apply For Job</div>
+          <div className="header">Post a Job</div>
             <div className="form-group">
-              <input type="text" name="fname" placeholder="First Name" value ={this.state.text}/>
-              <input type="text" name="lname" placeholder="Last Name" value ={this.state.text}/>
+              <input type="text" name="jobTitle" placeholder="Job Title" value ={this.state.text}/>
+              <input type="text" name="jobDescription" placeholder="Job Description" value ={this.state.text}/>
               <br></br>
-              <input type="submit" value="Submit Application" />
+              <label>Posting Date</label>
+              <input type="date" name="startDate" placeholder="Start Date" value ={this.state.startDate}/>
+              <br></br>
+              <label>Posting Date</label>
+              <input type="date" name="expirationDate" placeholder="Expiration Date" value ={this.state.expirationDate}/>
+              <input type="submit" value="Submit Job Posting" />
               <button id ="closeButton" onClick={this.props.closePopup}>Close</button>
             </div>
           </form>
@@ -85,8 +99,10 @@ class Popup extends React.Component {
         <div className='popup_inner'>
         <h1>Posting Preview</h1>
           <h2>{this.props.jobTitle}</h2>
-          <h4><b>First Name: </b> {this.props.fname}</h4>
-          <h4><b>Last Name: </b>{this.props.lname}</h4>
+          <h4><b>Posting ID: </b> {this.props.postingID}</h4>
+          <h4><b>Date Posted: </b>{this.props.postingDate}</h4>
+          <h4><b>Posted by Manager:</b> {this.props.managerID}</h4>
+          <h3>{this.props.jobDescription}</h3>
           <button id ="closeButton" onClick={this.props.closePopup}>Done</button>
         </div>
       </div>
@@ -95,4 +111,4 @@ class Popup extends React.Component {
 }
 
 
-export default JobPostingPopup;
+export default PostJobPopup;

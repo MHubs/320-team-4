@@ -10,6 +10,6 @@ var jobSchema = new Schema({ //defines database schema to store objects
   "startDate" : String,
   "postedDate" : Date,
   "postingExpirationDate" : Date
-});
+},{ collection: 'JobPosting' });
 
-module.exports = mongoose.model('JobPosting', jobSchema, 'JobPosting');
+module.exports = mongoose.model('JobPosting', jobSchema)

@@ -8,8 +8,3 @@ hooks:
     - location: scripts/installer.sh
       timeout: 300
       runas: root
-  ApplicationStart:
-    - location: scripts/start_server.sh
-    - location: scripts/start_web.sh
-      timeout: 300
-      runas: root

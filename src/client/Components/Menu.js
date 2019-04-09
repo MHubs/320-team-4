@@ -4,23 +4,23 @@ import {Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 class Menu extends Component {
   constructor(props){
     super(props);
-    this.state= {notLoggedIn:true}
+    this.state= {LoggedIn:false}
   }
 
   render() {
     return (
       <div>
         <Navbar style={{backgroundColor: '#519e2f'}}>
-          <NavbarBrand> Ultimate Hiring App</NavbarBrand>
+          <NavbarBrand style={{color: 'white'}}> Ultimate Hiring App</NavbarBrand>
           <Nav className="ml-auto" navbar>
-          {this.notLoggedIn ? (
+          {this.LoggedIn ? (
              <NavItem>
-             <NavLink href="/managerview"> Log in </NavLink>
+              <NavLink href="/"> Log Out </NavLink>
              {/*{this.setState({notLoggedIn: false})}*/}
              </NavItem>
           ) : (
             <NavItem>
-            <NavLink href="/"> Log out </NavLink>
+            <NavLink href="/managerview"> Log In </NavLink>
             {/*{this.setState({notLoggedIn: true})}*/}
             </NavItem>
           )}

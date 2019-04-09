@@ -7,19 +7,20 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const JobPosting = require('../models/JobPostingJSON');
 
-const app = express()
-const router = express.Router()
+const app = express();
+const router = express.Router();
 
-const dbRoute = "mongodb://3.18.251.248:27017/scrumgang_server"
-const API_PORT = 3001
+const dbRoute = "mongodb://3.18.251.248:27017/scrumgang_server";
+//const dbRoute = "mongodb://127.0.0.1:27017/scrumgang_server"
+const API_PORT = 3001;
 
-app.use(cors()) //makes app work with cors
-app.use(bodyParser()) //parses json data for us
+app.use(cors()); //makes app work with cors
+app.use(bodyParser()); //parses json data for us
 
 // connects our back end code with the database
 mongoose.connect(
-    dbRoute,
-    { useNewUrlParser: true }
+  dbRoute,
+  { useNewUrlParser: true }
 );
 
 let db = mongoose.connection
@@ -36,6 +37,7 @@ app.post("/putData", (req, res) => {
   job.managerID = req.body.managerID
   job.postedDate = req.body.postingDate
 
+  console.log(job.title)
   job.save(err => { //sends object to database
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });

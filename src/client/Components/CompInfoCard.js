@@ -7,7 +7,7 @@ export default class CompInfoCard extends React.Component {
   render() {
     return (
       <div>
-        <Card>
+        <Card style={{width:"100%", height:"60%"}}>
           <CardBody className="text-center">
             <CardHeader tag="h5"> View Company Info </CardHeader>
             <CardBody> Card Body: Text about card goes here </CardBody>

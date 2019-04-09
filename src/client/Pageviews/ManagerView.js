@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import JobPostingPopup from '../Components/JobPostingPopup';
+import JobPostingPopup from '../Components/PostJobPopup';
 import ManagerDash from '../Components/ManagerDash';
 import LogOutButton from '../Components/LogOutButton';
 
