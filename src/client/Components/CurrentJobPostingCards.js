@@ -50,8 +50,8 @@ if(index %6===0){
           <Col sm="6" md={{size: 10, offset: 1}}>
             <Row>
               <Col> <JobPostingCard title ={jobs[(currentPage -1)*6 + index%6].title} location ={jobs[(currentPage -1)*6 + index%6].location} description= {jobs[(currentPage -1)*6 + index%6].description}/> </Col>
-              <Col> <JobPostingCard invisible={(currentPage - 1) * 6 + (index + 2) % 6 >= jobs.length} title ={(currentPage -1)*6 + (index+1)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+1)%6].title : ""} location ={(currentPage -1)*6 + (index+1)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+1)%6].location : ""} description= {(currentPage -1)*6 + (index+1)%6 < jobs.length ?jobs[(currentPage -1)*6 + (index+1)%6].description : ""}/> </Col>
-              <Col> <JobPostingCard invisible={(currentPage - 1) * 6 + (index + 3) % 6 >= jobs.length} title ={(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].title : ""} location ={(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].location : ""} description= {(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].description : ""}/> </Col>
+              <Col> <JobPostingCard invisible={(currentPage - 1) * 6 + (index + 1) % 6 >= jobs.length} title ={(currentPage -1)*6 + (index+1)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+1)%6].title : ""} location ={(currentPage -1)*6 + (index+1)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+1)%6].location : ""} description= {(currentPage -1)*6 + (index+1)%6 < jobs.length ?jobs[(currentPage -1)*6 + (index+1)%6].description : ""}/> </Col>
+              <Col> <JobPostingCard invisible={(currentPage - 1) * 6 + (index + 2) % 6 >= jobs.length} title ={(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].title : ""} location ={(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].location : ""} description= {(currentPage -1)*6 + (index+2)%6 < jobs.length ? jobs[(currentPage -1)*6 + (index+2)%6].description : ""}/> </Col>
             </Row>
             <br></br>
             <Row>
