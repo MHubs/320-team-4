@@ -46,7 +46,7 @@ class PostJobPopup extends Component{
       },() => { //callback param ensures that setstate occurs before post
         //push data via backend
         console.log('POST')
-        axios.post('http://13.59.146.4:3001/putData', this.state)
+        axios.post('http://18.216.20.251:3001/putData', this.state)
         this.props.closePopup()
       });
       //document.getElementById("posting-form").reset();
