@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import JobPostingPopup from '../Components/PostJobPopup';
-import ManagerDash from '../Components/ManagerDash';
-import LogOutButton from '../Components/LogOutButton';
+
+import ManagerDash from '../Components/ManagerViewComponents/ManagerDash';
+
 
 class ManagerView extends Component{
   render(){
     return (
       <div>
-        <header>
-          <LogOutButton/>
-        </header>
         <div className="Postings">
+          <h1>Welcome Back!</h1>
           <ManagerDash />
           <br></br>
           <br></br>

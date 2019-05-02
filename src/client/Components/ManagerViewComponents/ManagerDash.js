@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import PostJobCard from "./PostJobCard";
-import OrgChartCard from "./OrgChartCard";
-import CompInfoCard from "./CompInfoCard";
-import ManPostingsCard from "./ManPostingsCard";
-import JobPostingPopup from './PostJobPopup';
+import PostJobCard from "./PostJobComponents/PostJobCard";
+import OrgChartCard from "./OrgChartComponents/OrgChartCard";
+import ViewApplicantsCard from "./ViewApplicantsComponents/ViewApplicantsCard";
+import ManPostingsCard from "./ManageJobPostingsComponent/ManPostingsCard";
+import JobPostingPopup from './PostJobComponents/PostJobPopup';
 import RecentPostings from "./RecentPostings";
 
 class ManagerDash extends Component {
@@ -12,12 +12,11 @@ class ManagerDash extends Component {
   render () {
     return (
       <Container fluid>
-        <Row>
-          <Col xs="auto"> <RecentPostings /></Col>
+        <div className="row justify-content-center">
           <Col sm="12" md={{size: 6, offset: 1}}>
             <Row>
               <Col> <OrgChartCard /> </Col>
-              <Col> <CompInfoCard /> </Col>
+              <Col> <ViewApplicantsCard /> </Col>
             </Row>
             <br></br>
             <Row>
@@ -25,7 +24,7 @@ class ManagerDash extends Component {
               <Col> <PostJobCard /> </Col>
             </Row>
           </Col>
-        </Row>
+        </div>
       </Container>
     )
 

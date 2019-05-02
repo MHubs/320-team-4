@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardHeader, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
-import PostJobPopup from '../Components/PostJobPopup';
+import PostJobPopup from './PostJobPopup';
 
 class PostJobCard extends Component {
   constructor(props) {
@@ -25,12 +25,12 @@ class PostJobCard extends Component {
           <CardBody className="text-center">
             <CardHeader tag="h5"> Post a Job</CardHeader>
             <CardBody> Card Body: Text about card goes here </CardBody>
-            <Button class="btn" onClick={this.togglePopup.bind(this)}> Button </Button>
+            <Button class="btn" onClick={this.togglePopup.bind(this)}> Post New Job </Button>
           </CardBody>
         </Card>
         {this.state.showPopup ?
           <PostJobPopup
-            text='Close Me'
+            text='Close M'
             closePopup={this.togglePopup.bind(this)}
           />
           : null

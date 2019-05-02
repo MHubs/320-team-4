@@ -14,7 +14,7 @@ class CurrentJobPostingCards extends Component {
     super(props);
     console.log(this.props);
     this.state = {
-      jobsList: this.props.jobs,
+      jobsList: this.props.jobs.reverse(),
       currentPage: 1,
       jobsPerPage: 6
     };
@@ -37,7 +37,7 @@ class CurrentJobPostingCards extends Component {
     const indexOfFirstJobPosting = indexOfLastJobPosting - jobsPerPage;
     const currentJobPosting = jobs.slice(indexOfFirstJobPosting, indexOfLastJobPosting);
 
-  
+
 
     //Logic for displaying 6 cards per page
     let JobPostingCardArray = currentJobPosting.map(function (object, index) {
@@ -63,12 +63,12 @@ if(index %6===0){
           </Col>
         </Row>
 </div>)
- } 
+ }
 
 
 
   })
-    
+
 
     // Logic for displaying page numbers
     const pageNumbers = [];
@@ -104,5 +104,3 @@ if(index %6===0){
 
 
 export default CurrentJobPostingCards;
-
-

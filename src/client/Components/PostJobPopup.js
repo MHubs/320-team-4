@@ -46,7 +46,7 @@ class PostJobPopup extends Component{
       },() => { //callback param ensures that setstate occurs before post
         //push data via backend
         console.log('POST')
-        axios.post('http://18.216.20.251:3001/putData', this.state)
+        axios.post('http://localhost:3001/putData', this.state)
         this.props.closePopup()
       });
       //document.getElementById("posting-form").reset();
@@ -71,7 +71,7 @@ class PostJobPopup extends Component{
               <label>Posting Date</label>
               <input type="date" name="startDate" placeholder="Start Date" value ={this.state.startDate}/>
               <br></br>
-              <label>Posting Date</label>
+              <label>Expiration Date</label>
               <input type="date" name="expirationDate" placeholder="Expiration Date" value ={this.state.expirationDate}/>
               <input type="submit" value="Submit Job Posting" />
               <button id ="closeButton" onClick={this.props.closePopup}>Close</button>

@@ -9,7 +9,8 @@ hooks:
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: scripts/start_server.sh
-    - location: scripts/start_web.sh
+   # - location: scripts/start_server.sh
+   # - location: scripts/start_web.sh
+    - location: scripts/start_docker.sh
       timeout: 300
       runas: root

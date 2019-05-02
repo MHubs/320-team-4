@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import JobView from '../Components/JobView';
-import LogInbutton from '../Components/LogInbutton';
+
+import JobView from '../Components/LandingPageComponents/JobView';
+
 
 class PublicView extends Component {
     render() {
         return (
-          <div className = "view">
-            <header>
-              <LogInbutton />
-            </header>
+          <div class = "view">
             <div className = "container">
             <JobView />
             </div>
