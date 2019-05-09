@@ -3,7 +3,7 @@ import axios from 'axios'
 import Input from "reactstrap/es/Input";
 import Button from "reactstrap/es/Button";
 import Label from "reactstrap/es/Label";
-
+import {ip} from "./JobView";
 
 class JobPostingPopup extends Component {
     constructor(props) {
@@ -11,7 +11,8 @@ class JobPostingPopup extends Component {
         this.state = {
             fname: '',
             lname: '',
-            email: ''
+            email: '',
+            jobID: this.props.job._id
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
@@ -57,11 +58,15 @@ class JobPostingPopup extends Component {
             this.setState({
                 fname: form.fname.value,
                 lname: form.lname.value,
-                email: form.email.value
+                email: form.email.value,
+				resume: form.resume.value,
+        resume_type: form.resume.files[0].type, //need to store type and name for use with blob
+        resume_name: form.resume.files[0].name,
+        jobID: this.props.job._id,
             }, () => { //callback param ensures that setstate occurs before post
                 //push data via backend
                 console.log(this.state.fname);
-                axios.post('http://localhost:3001/putApp', this.state);
+                axios.post('http://'+ip+':3001/putApp', this.state);
                 this.props.closePopup();
             });
         }
@@ -76,7 +81,7 @@ class JobPostingPopup extends Component {
 
 
     render() {
-        console.log(this.props.job);
+        console.log(this.state.jobID);
         return (
             //Form elements with labels and inputs for job title and job description
             <div>
@@ -95,8 +100,11 @@ class JobPostingPopup extends Component {
                                 <Input type="text" name="lname" placeholder="Last Name" value={this.state.text}/>
                                 <br/>
                                 <Label>Email<span className="required-Field">*</span></Label>
-                                <Input type="email" name="email" placeholder="tblessing@umass.edu" value={this.state.text}/>
+                                <Input type="email" name="email" placeholder="example@domain.com" value={this.state.text}/>
                                 <br/>
+								<Label>Resume<span className="required-Field">*</span></Label>
+								<Input type="file" name="resume" value={this.state.file} />
+								<br/>
                                 </div>
                             </div>
 
@@ -108,7 +116,7 @@ class JobPostingPopup extends Component {
                                     <Button id="submitButton" onClick={this.handleSubmit}>Submit Application</Button>
                                 </div>
                                 <div className="col text-left">
-                                    <Button id="closeButton" onClick={this.props.closePopup}>Close</Button>
+                                    <Button id="close" onClick={this.props.closePopup}>Close</Button>
                                 </div>
                             </div>
                         </div>

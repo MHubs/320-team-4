@@ -1,34 +1,35 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, {Component} from 'react';
+import {Col, Container, Row} from 'reactstrap';
 import PostJobCard from "./PostJobComponents/PostJobCard";
 import OrgChartCard from "./OrgChartComponents/OrgChartCard";
 import ViewApplicantsCard from "./ViewApplicantsComponents/ViewApplicantsCard";
 import ManPostingsCard from "./ManageJobPostingsComponent/ManPostingsCard";
-import JobPostingPopup from './PostJobComponents/PostJobPopup';
-import RecentPostings from "./RecentPostings";
+
 
 class ManagerDash extends Component {
+  constructor(props){
+    super(props);
+  }
 
   render () {
     return (
-      <Container fluid>
-        <div className="row justify-content-center">
-          <Col sm="12" md={{size: 6, offset: 1}}>
+        <div>
             <Row>
-              <Col> <OrgChartCard /> </Col>
-              <Col> <ViewApplicantsCard /> </Col>
+              <div className="mcard1"> <OrgChartCard  empID= {this.props.empID} compID= {this.props.compID}/> </div>
+              <div className="mcard2"> <ViewApplicantsCard  empID= {this.props.empID} compID= {this.props.compID}/> </div>
+            <br/>
+              <div className="mcard3"> <ManPostingsCard  empID= {this.props.empID} compID= {this.props.compID}/> </div>
+              <div className="mcard4"> <PostJobCard  empID= {this.props.empID} compID= {this.props.compID}/> </div>
             </Row>
-            <br></br>
-            <Row>
-              <Col> <ManPostingsCard /> </Col>
-              <Col> <PostJobCard /> </Col>
-            </Row>
-          </Col>
         </div>
-      </Container>
+
     )
 
-  }
+
+
+
+
+    }
 }
 
 export default ManagerDash;

@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import Input from "reactstrap/es/Input";
 import Label from "reactstrap/es/Label";
 import Button from "reactstrap/es/Button";
-
+import {ip} from "../../LandingPageComponents/JobView";
 
 class PostJobPopup extends Component{
   constructor(props){
       super(props);
       this.state = {
           postingID: Math.floor(Math.random()*100),
-          managerID: 22,
+          managerID: this.props.empID,
           jobTitle: '',
           jobDescription: '',
-          companyID: 1,
+          companyID: this.props.compID,
+          companyName: this.props.companyName,
           postingDate:  new Date().toJSON().slice(0,10).replace(/-/g,'/'),
           showPopup: false,
           startDate: null,
@@ -58,6 +59,12 @@ class PostJobPopup extends Component{
                 errorLabel.className = "invalid";
                 errorLabel.innerHTML = "Please enter a valid start date";
                 valid = false;
+            } else {
+                if (new Date(form.startDate.value) < new Date()) {
+                    errorLabel.className = "invalid";
+                    errorLabel.innerHTML = "Start date cannot be before today!";
+                    valid = false;
+                }
             }
         }
         if (form.expirationDate.value !== "") {
@@ -65,11 +72,16 @@ class PostJobPopup extends Component{
                 errorLabel.className = "invalid";
                 errorLabel.innerHTML = "Please enter a valid expiration date";
                 valid = false;
+            } else {
+                if (new Date() > new Date(form.expirationDate.value)) {
+                    errorLabel.className = "invalid";
+                    errorLabel.innerHTML = "Expiration date cannot be before today!";
+                    valid = false;
+                }
             }
         }
         if (Object.keys(this.state.customFields).length > 0) { //Test if made a custom field but left it empty
             Object.values(this.state.customFields).forEach(function testForEmpty(item) {
-                console.log(item, item.toString(), item.toString().trim() === "");
                 if (item.toString().trim() === "") {
                     errorLabel.className = "invalid";
                     errorLabel.innerHTML = "Please fill out all created custom fields";
@@ -88,7 +100,7 @@ class PostJobPopup extends Component{
             }, () => { //callback param ensures that setstate occurs before post
                 //push data via backend
                 console.log('POST');
-                axios.post('http://localhost:3001/putData', this.state);
+                axios.post('http://'+ip+':3001/putData', this.state);
                 this.props.closePopup()
             });
         }
@@ -180,7 +192,7 @@ class PostJobPopup extends Component{
                                 <Button onClick={() => this.handleSubmit()}>Submit</Button>
                             </div>
                             <div className="col text-left">
-                                <Button id="closeButton" onClick={this.props.closePopup}>Close</Button>
+                                <Button id="close" onClick={this.props.closePopup}>Close</Button>
                             </div>
                         </div>
                     </div>
@@ -191,26 +203,6 @@ class PostJobPopup extends Component{
     }
 
 
-}
-
-class Popup extends React.Component {
-
-    render() {
-
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <h1>Posting Preview</h1>
-                    <h2>{this.props.jobTitle}</h2>
-                    <h4><b>Posting ID: </b> {this.props.postingID}</h4>
-                    <h4><b>Date Posted: </b>{this.props.postingDate}</h4>
-                    <h4><b>Posted by Manager:</b> {this.props.managerID}</h4>
-                    <h3>{this.props.jobDescription}</h3>
-                    <button id="closeButton" onClick={this.props.closePopup}>Done</button>
-                </div>
-            </div>
-        );
-    }
 }
 
 

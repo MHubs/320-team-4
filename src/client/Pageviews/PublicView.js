@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import JobView from '../Components/LandingPageComponents/JobView';
+import {JobView} from '../Components/LandingPageComponents/JobView';
 
 
 class PublicView extends Component {

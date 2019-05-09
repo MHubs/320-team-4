@@ -3,7 +3,7 @@ import axios from 'axios'
 import Label from "reactstrap/es/Label";
 import Input from "reactstrap/es/Input";
 import Button from "reactstrap/es/Button";
-
+import {ip}  from "../../LandingPageComponents/JobView";
 
 //Popup that allows job title and job description to be changed
 class EditJobPostingPopup extends Component {
@@ -57,6 +57,11 @@ class EditJobPostingPopup extends Component {
         this.setState({expirationDate: event.target.value})
     }
 
+    getJobs = async () => {
+        let res = await axios.get('http://' + ip + ':3001/getData');
+        let {data} = await res.data;
+        this.props.setJobs(data.reverse().filter(job => job.companyId == this.props.compID && job.managerId == this.props.empID));
+    };
 //Method for action after hitting the submit button
     handleSubmit = (event) => {
         // event.preventDefault();
@@ -82,6 +87,12 @@ class EditJobPostingPopup extends Component {
                 errorLabel.className = "invalid";
                 errorLabel.innerHTML = "Please enter a valid start date";
                 valid = false;
+            } else {
+                if (new Date(form.startDate.value) < new Date()) {
+                    errorLabel.className = "invalid";
+                    errorLabel.innerHTML = "Start date cannot be before today!";
+                    valid = false;
+                }
             }
         }
         if (form.expirationDate.value !== "") {
@@ -89,11 +100,16 @@ class EditJobPostingPopup extends Component {
                 errorLabel.className = "invalid";
                 errorLabel.innerHTML = "Please enter a valid expiration date";
                 valid = false;
+            } else {
+                if (new Date() > new Date(form.expirationDate.value)) {
+                    errorLabel.className = "invalid";
+                    errorLabel.innerHTML = "Expiration date cannot be before today!";
+                    valid = false;
+                }
             }
         }
         if (Object.keys(this.state.customFields).length > 0) { //Test if made a custom field but left it empty
             Object.values(this.state.customFields).forEach(function testForEmpty(item) {
-                console.log(item, item.toString(), item.toString().trim() === "");
                 if (item.toString().trim() === "") {
                     errorLabel.className = "invalid";
                     errorLabel.innerHTML = "Please fill out all created custom fields";
@@ -109,12 +125,12 @@ class EditJobPostingPopup extends Component {
                 startDate: form.startDate.value,
                 expirationDate: form.expirationDate.value,
                 customFieldValues: Object.values(this.state.customFields)
-            }, () => { //callback param ensures that setstate occurs before post
+            }, async () => { //callback param ensures that setstate occurs before post
                 //push data via backend
-                console.log('POST');
-                axios.post('http://localhost:3001/updateData', this.state);
+                console.log('POST', ip);
+                let data = await axios.post('http://' + ip + ':3001/updateData', this.state);
                 this.props.closePopup();
-                window.location.reload();
+                this.getJobs();
             });
         }
 
@@ -210,7 +226,7 @@ class EditJobPostingPopup extends Component {
                                     <Button onClick={() => this.handleSubmit()}>Save</Button>
                                 </div>
                                 <div className="col text-left">
-                                    <Button id="closeButton" onClick={this.props.closePopup}>Close</Button>
+                                    <Button id="close" onClick={this.props.closePopup}>Close</Button>
                                 </div>
                             </div>
                         </div>
@@ -223,24 +239,5 @@ class EditJobPostingPopup extends Component {
 
 
 }
-
-class Popup extends React.Component {
-
-    render() {
-
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <h1>Posting Preview</h1>
-                    <h2>{this.props.jobTitle}</h2>
-                    <h4><b>First Name: </b> {this.props.fname}</h4>
-                    <h4><b>Last Name: </b>{this.props.lname}</h4>
-                    <button id="closeButton" onClick={this.props.closePopup}>Done</button>
-                </div>
-            </div>
-        );
-    }
-}
-
 
 export default EditJobPostingPopup;

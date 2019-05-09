@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import JobView from '../Components/LandingPageComponents/JobView';
-
 import ManagePostings from '../Components/ManagerViewComponents/ManageJobPostingsComponent/ManagePostings';
 
 //Renderds Manage Postings to show Job Posting cards with edit/delete feature
@@ -10,7 +8,7 @@ class ManagePostingsView extends Component {
         return (
           <div className = "view">
             <div className = "container">
-            <ManagePostings />
+            <ManagePostings empID= {this.props.empID} compID= {this.props.compID}/>
             </div>
           </div>
         );

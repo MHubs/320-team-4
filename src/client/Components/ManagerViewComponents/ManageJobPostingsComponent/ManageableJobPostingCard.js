@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React, { Component } from 'react';
-import { Card, CardHeader, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Card, CardBody, CardHeader} from 'reactstrap';
 import EditJobPostingPopup from './EditJobPostingPopup';
+import {ip} from "../../LandingPageComponents/JobView";
 
 //Card Components in the Manage Job Postings View
 class ManageableJobPostingCard extends Component {
@@ -10,7 +10,7 @@ class ManageableJobPostingCard extends Component {
     super(props);
     this.state = {
       showPopup: false,
-      id: this.props.job._id
+      id: ""
     };
 this.deleteJobPosting = this.deleteJobPosting.bind(this);
   }
@@ -22,14 +22,19 @@ this.deleteJobPosting = this.deleteJobPosting.bind(this);
     });
   }
 
- 
 
- 
+  getJobs = async () => {
+    let res = await axios.get('http://' + ip + ':3001/getData');
+    let {data} = await res.data;
+    this.props.setJobs(data.reverse().filter(job => job.companyId == this.props.compID && job.managerId == this.props.empID));
+  };
+
   deleteJobPosting = (event) =>{
     event.preventDefault();
     console.log(this.state.id, this.props.job._id);
     this.setState({id: this.props.job._id}, () => {
-      axios.post('http://localhost:3001/deleteJobPosting', this.state);
+      axios.post('http://'+ip+':3001/deleteJobPosting', this.state);
+      this.getJobs();
     });
 
 }
@@ -52,6 +57,9 @@ this.deleteJobPosting = this.deleteJobPosting.bind(this);
               title = {this.props.title}
               description = {this.props.description}
                   closePopup={this.togglePopup.bind(this)}
+              setJobs={this.props.setJobs}
+              compID={this.props.compID}
+              empID={this.props.empID}
               />
               : null
           }

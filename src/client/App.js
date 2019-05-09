@@ -9,20 +9,41 @@ import ErrorPage from './Pageviews/ErrorPage';
 import EmployeeView from "./Pageviews/EmployeeView";
 import ViewApplicantsView from "./Pageviews/ViewApplicantsView";
 
+
+
 class App extends Component {
+
+  constructor(){
+    super();
+    this.updateUserCreds = this.updateUserCreds.bind(this);
+    this.state= {
+      employeeID: 0,
+      companyID: 0
+    }
+
+    
+  }
+
+  updateUserCreds(empID, compID){
+    this.setState({
+      employeeID: empID,
+      companyID: compID
+    });
+  }
+
     render() {
         return (
           <div class = "view">
             <header>
-              <Menu />
+              <Menu updateCreds={this.updateUserCreds}/>
             </header>
             <main>
             <Switch>
               <Route exact path="/" component ={PublicView}/>
-              <Route exact path="/ManagerView" component= {ManagerView}/>
-              <Route exact path="/ManageJobPostingsView" component= {ManageJobPostingsView}/>
-              <Route exact path="/EmployeeView" component= {EmployeeView}/>
-              <Route exact path="/ViewApplicantsView" component= {ViewApplicantsView}/>
+              <Route exact path="/ManagerView" component= {() => <ManagerView empID={this.state.employeeID} compID= {this.state.companyID}/>}/>
+              <Route exact path="/ManageJobPostingsView" component= {() => <ManageJobPostingsView empID={this.state.employeeID} compID= {this.state.companyID}/>}/>
+              <Route exact path="/EmployeeView" component= {() => <EmployeeView empID={this.state.employeeID} compID= {this.state.companyID}/>}/>
+              <Route exact path="/ViewApplicantsView" component= {() => <ViewApplicantsView empID={this.state.employeeID} compID= {this.state.companyID}/>}/>
               <Route component= {ErrorPage}/>
             </Switch>
             </main>

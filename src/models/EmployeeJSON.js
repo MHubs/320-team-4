@@ -12,7 +12,7 @@ var employeeSchema = new Schema({ //defines database schema to store objects
     "positionTitle": String,
     "startDate": String,
     "onBoarding": Boolean,
-    "customFields": Array
+    "customFields": Object
 },{ collection: 'Employee' });
 
 module.exports = mongoose.model('Employee', employeeSchema);

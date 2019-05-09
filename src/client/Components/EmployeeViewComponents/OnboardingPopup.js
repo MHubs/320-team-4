@@ -3,7 +3,7 @@ import axios from 'axios/index'
 import Label from "reactstrap/es/Label";
 import Input from "reactstrap/es/Input";
 import Button from "reactstrap/es/Button";
-
+import {ip} from "../LandingPageComponents/JobView";
 
 //Popup that allows job title and job description to be changed
 class EditJobPostingPopup extends Component {
@@ -19,7 +19,6 @@ class EditJobPostingPopup extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
-
     }
 
 //Method to toggle popup window..
@@ -44,7 +43,6 @@ class EditJobPostingPopup extends Component {
 
         if (Object.keys(this.state.customFields).length > 0) { //Test if made a custom field but left it empty
             Object.values(this.state.customFields).forEach(function testForEmpty(item) {
-                console.log(item, item.toString(), item.toString().trim() === "");
                 if (item.toString().trim() === "") {
                     errorLabel.className = "invalid";
                     errorLabel.innerHTML = "Please fill out all fields";
@@ -56,11 +54,11 @@ class EditJobPostingPopup extends Component {
         if (valid) {
             this.setState({
                 customFields: this.state.customFields,
-                onBoarding: true
+                onBoarding: false
             }, () => { //callback param ensures that setstate occurs before post
                 //push data via backend
                 console.log('POST');
-                axios.post('http://localhost:3001/updateEmployee', this.state);
+                axios.post('http://'+ip+':3001/updateEmployee', this.state);
                 this.props.closePopup();
             });
         }
@@ -72,7 +70,6 @@ class EditJobPostingPopup extends Component {
     handleChange(e, input) {
         let arr = this.state.customFields;
         arr[input] = e.target.value;
-        console.log(e.target.value, input);
         this.setState(prevState => ({customFields: arr}));
     }
 
@@ -87,18 +84,17 @@ class EditJobPostingPopup extends Component {
                     <div className='popup_inner'>
                         <form name="postingInfo" id="editable-posting-form">
                             <div className="header">
-                                <div className="vertical-center horizontal-center">Edit {this.state.jobTitle}</div>
+                                <div className="vertical-center horizontal-center">Employee Onboarding</div>
                             </div>
                             <div className="form-group">
                                 <Label>Custom Fields</Label>
                                 <div id="fields">
-                                    {Object.keys(this.state.employee.customFields).map(function (input) {
+                                    {Object.keys(this.state.customFields).map(function (input) {
                                         return (
                                             <div>
-                                                <div className="row">
+                                                <div >
                                                     <Label>{input}</Label>
-                                                    <Input key={input} id={input} onChange={(e) => self.handleChange(e, input)} value={self.employee.customFields[input]}/>
-
+                                                    <Input key={input} id={input} onChange={(e) => self.handleChange(e, input)} value={self.state.customFields[input]}/>
                                                 </div>
                                             </div>
                                         )
@@ -115,7 +111,7 @@ class EditJobPostingPopup extends Component {
                                     <Button onClick={() => this.handleSubmit()}>Save</Button>
                                 </div>
                                 <div className="col text-left">
-                                    <Button id="closeButton" onClick={this.props.closePopup}>Close</Button>
+                                    <Button id="close" onClick={this.props.closePopup}>Close</Button>
                                 </div>
                             </div>
                         </div>

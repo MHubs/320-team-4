@@ -48,38 +48,38 @@ class CurrentJobPostingCards extends Component {
                   <div>
                       <div className="row">
                           <div className="c1"><JobPostingCard title={jobs[(currentPage - 1) * 6 + index % 6].title}
-                                                              location={jobs[(currentPage - 1) * 6 + index % 6].location}
+                                                              company={jobs[(currentPage - 1) * 6 + index % 6].companyName}
                                                               description={jobs[(currentPage - 1) * 6 + index % 6].description}
                                                               job={jobs[(currentPage - 1) * 6 + index % 6]}/></div>
                           <div className="c2"><JobPostingCard
                               invisible={(currentPage - 1) * 6 + (index + 1) % 6 >= jobs.length}
                               title={(currentPage - 1) * 6 + (index + 1) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 1) % 6].title : ""}
-                              location={(currentPage - 1) * 6 + (index + 1) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 1) % 6].location : ""}
+                              company={(currentPage - 1) * 6 + (index + 1) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 1) % 6].companyName : ""}
                               description={(currentPage - 1) * 6 + (index + 1) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 1) % 6].description : ""}
                               job={jobs[(currentPage - 1) * 6 + (index + 1) % 6]}/></div>
                           <div className="c3"><JobPostingCard
                               invisible={(currentPage - 1) * 6 + (index + 2) % 6 >= jobs.length}
                               title={(currentPage - 1) * 6 + (index + 2) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 2) % 6].title : ""}
-                              location={(currentPage - 1) * 6 + (index + 2) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 2) % 6].location : ""}
+                              company={(currentPage - 1) * 6 + (index + 2) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 2) % 6].companyName : ""}
                               description={(currentPage - 1) * 6 + (index + 2) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 2) % 6].description : ""}
                               job={jobs[(currentPage - 1) * 6 + (index + 2) % 6]}/></div>
                           <br/>
                           <div className="c4"><JobPostingCard
                               invisible={(currentPage - 1) * 6 + (index + 3) % 6 >= jobs.length}
                               title={(currentPage - 1) * 6 + (index + 3) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 3) % 6].title : ""}
-                              location={(currentPage - 1) * 6 + (index + 3) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 3) % 6].location : ""}
+                              company={(currentPage - 1) * 6 + (index + 3) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 3) % 6].companyName : ""}
                               description={(currentPage - 1) * 6 + (index + 3) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 3) % 6].description : ""}
                               job={jobs[(currentPage - 1) * 6 + (index + 3) % 6]}/></div>
                           <div className="c5"><JobPostingCard
                               invisible={(currentPage - 1) * 6 + (index + 4) % 6 >= jobs.length}
                               title={(currentPage - 1) * 6 + (index + 4) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 4) % 6].title : ""}
-                              location={(currentPage - 1) * 6 + (index + 4) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 4) % 6].location : ""}
+                              company={(currentPage - 1) * 6 + (index + 4) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 4) % 6].companyName : ""}
                               description={(currentPage - 1) * 6 + (index + 4) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 4) % 6].description : ""}
                               job={jobs[(currentPage - 1) * 6 + (index + 4) % 6]}/></div>
                           <div className="c6"><JobPostingCard
                               invisible={(currentPage - 1) * 6 + (index + 5) % 6 >= jobs.length}
                               title={(currentPage - 1) * 6 + (index + 5) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 5) % 6].title : ""}
-                              location={(currentPage - 1) * 6 + (index + 5) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 5) % 6].location : ""}
+                              company={(currentPage - 1) * 6 + (index + 5) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 5) % 6].companyName : ""}
                               description={(currentPage - 1) * 6 + (index + 5) % 6 < jobs.length ? jobs[(currentPage - 1) * 6 + (index + 5) % 6].description : ""}
                               job={jobs[(currentPage - 1) * 6 + (index + 5) % 6]}/></div>
 

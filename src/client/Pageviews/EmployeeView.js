@@ -13,7 +13,7 @@ class EmployeeView extends Component{
             <div>
                 <div className="Postings">
                   <h1>Welcome Back!</h1>
-                    <EmployeeDash employee={this.props.employee}/>
+                    <EmployeeDash empID= {this.props.empID} compID= {this.props.compID}/>
                     <br/>
                     <br/>
                 </div>

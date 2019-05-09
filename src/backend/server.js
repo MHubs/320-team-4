@@ -13,7 +13,7 @@ const Employee = require('../models/EmployeeJSON');
 const app = express()
 const router = express.Router()
 
-const dbRoute = "mongodb://3.14.102.19:27017/scrumgang_server"
+const dbRoute = "mongodb://18.221.111.127:27017/scrumgang_server"
 const API_PORT = 3001
 
 app.use(cors()); //makes app work with cors
@@ -37,6 +37,8 @@ app.post("/putData", (req, res) => {
   job.description = req.body.jobDescription;
   job.managerId = req.body.managerID;
   job.postedDate = req.body.postingDate;
+  job.companyId = req.body.companyID;
+  job.companyName = req.body.companyName;
   job.customFields = req.body.customFieldValues;
   job.startDate = req.body.startDate;
   job.postingExpirationDate = req.body.expirationDate;
@@ -67,8 +69,8 @@ app.post("/updateEmployee", (req, res) => {
   var customFields = req.body.customFields;
   var onBoard = req.body.onBoarding;
 
-  Employee.updateOne({"companyId": compID,  "employeeId":empID, "customFields": customFields, "onBoarding":onBoard},
-      {$set:{"title": req.body.jobTitle, "description":req.body.jobDescription, "startDate":req.body.startDate, "postingExpirationDate":req.body.expirationDate, "customFields":req.body.customFieldValues}}, (err, result) => {
+  Employee.updateOne({"companyId": compID,  "employeeId":empID},
+      {$set:{"title": req.body.jobTitle, "description":req.body.jobDescription, "startDate":req.body.startDate, "postingExpirationDate":req.body.expirationDate, "customFields":customFields,"onBoarding":onBoard}}, (err, result) => {
         if (err) return console.log(err);
         console.log(req.body);
         return res.json({success: true});
@@ -79,16 +81,30 @@ app.post("/putApp", (req, res) => {
   application = new JobApplication(); //based on Mongoose schema
 
   application.firstName = req.body.fname;
-  console.log(application.firstName);
 
   application.lastName = req.body.lname;
   application.email = req.body.email;
+
+  application.jobID = req.body.jobID;
+  application.resume = req.body.resume;
+  application.resume_name = req.body.resume_name;
+  application.resume_type = req.body.resume_type;
+  console.log(req.body.resume)
+  console.log(req.body.resume.name)
+  console.log(req.body.resume.type)
+  console.log(application.resume)
 
   application.save(err => { //sends object to database
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
+
+app.get("/getApps",(req, res) => {
+  JobApplication.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  })});
 
 app.get("/getData",(req, res) => {
   JobPosting.find((err, data) => {
@@ -97,39 +113,51 @@ app.get("/getData",(req, res) => {
   })});
 
 app.post("/addEmployee", (req, res) => {
-  employee = new Employee()
+  employee = new Employee();
 
-  employee.firstName = req.body.firstName
-  employee.lastName = req.body.lastName
-  employee.email = req.body.email
-  employee.companyId = req.body.companyId
-  employee.companyName = req.body.companyName
-  employee.positionTitle = req.body.positionTitle
-  employee.startDate = req.body.startDate
+  employee.firstName = req.body.firstName;
+  employee.lastName = req.body.lastName;
+  employee.companyName = req.body.companyName;
 
-  console.log(employee.firstName)
-  employee.save(err => { //sends object to database
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
+  Employee.countDocuments({companyName:req.body.companyName}, function(err, count) {
+    employee.employeeId = count + 1;
+    employee.email = req.body.email;
+    employee.companyId = req.body.companyId;
+
+    employee.managerId = req.body.managerId;
+    employee.positionTitle = req.body.positionTitle;
+    employee.startDate = req.body.startDate;
+
+    employee.onBoarding = req.body.onBoarding;
+    employee.customFields = req.body.customFields;
+
+    return employee.save(err => { //sends object to database
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true, data: {id: employee.employeeId} });
     });
   });
+ });
 
-app.get("/getEmployee", (req, res) => {
-  Employee.find({companyId: 1}, null, {sort: 'managerId'}, (err, data) => {
+app.put("/getEmployee", (req, res) => {
+  var compID = req.body.companyID;
+  Employee.find({companyId: compID}, null, {sort: 'managerId'}, (err, data) => {
     if (err){
-      console.log(err)
+      console.log(err);
       return res.json({ success: false, error: err });
     }
     return res.json({ success: true, data: data });
   })});
 
-  //Get Employee Info
-/*  app.get("/getEmployee", (req, res) => {
-    var compID = req.body.companyID;
-    var empID = req.body.employeeID;
-    Employee.find({companyId: compID, employeeId: empID}, null, {sort: 'managerId'}, (err, data) => {
-      if (err){
-        console.log(err);*/
+app.put("/getEmployeeByID", (req, res) => {
+  var compID = req.body.companyID;
+  var empID = req.body.employeeID;
+  Employee.find({companyId: compID, employeeId: empID}, null, {sort: 'managerId'}, (err, data) => {
+    if (err){
+      console.log(err);
+      return res.json({ success: false, error: err });
+    }
+    return res.json({ success: true, data: data });
+  })});
 
 app.get("/orgChart/", (req, res) => {
   id = req.params.managerId
@@ -156,7 +184,6 @@ app.get("/orgChart/", (req, res) => {
     app.post("/deleteJobPosting", (req, res) => {
       JobPosting.deleteOne({_id: new mongodb.ObjectId( req.body.id)}, (err, result) => {
         if (err) return console.log(err)
-        console.log(req.body)
         return res.json({success: true});
       })
     });
