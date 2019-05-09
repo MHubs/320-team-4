@@ -22,15 +22,8 @@ services:
     #    volumes:
     #      - ./backend:/usr/src/app
     ports:
-      - "3031:3000"
+      - "3001:3001"
     working_dir: /usr/src/app/src/backend
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-    depends_on:
-      - mongo
-  mongo:
-    image: "mongo"
-    container_name: mongo
-    ports:
-      - "27017:27017"
